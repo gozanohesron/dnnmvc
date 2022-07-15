@@ -1,0 +1,16 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NetcareIconicPages.NetcareIconicPages.Models.Settings>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using System.Web.Mvc;
+
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+    @if (string.IsNullOrEmpty(Model.PageId) || string.IsNullOrEmpty(Model.ProjectId))
+    {
+        <span>No Page Setup Yet</span>
+    }
+    else
+    {
+        @Html.Raw(System.IO.File.ReadAllText(Server.MapPath(Model.Path)))
+    }
+</div>

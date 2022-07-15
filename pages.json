@@ -1,0 +1,62 @@
+[
+  {
+    "projectId": "_Netcare911",
+    "projectName": "911",
+    "pages": [
+      {
+        "pageName": "",
+        "pageId": ""
+      }
+    ]
+  },
+  {
+    "projectId": "_NetcareMedicross",
+    "projectName": "Medicross",
+    "pages": [
+      {
+        "pageName": "",
+        "pageId": ""
+      }
+    ]
+  },
+  {
+    "projectId": "_NetcareAkeso",
+    "projectName": "Akeso",
+    "pages": [
+      {
+        "pageName": "",
+        "pageId": ""
+      }
+    ]
+  },
+  {
+    "projectId": "_NetcareHospitals",
+    "projectName": "Hospitals",
+    "pages": [
+      {
+        "pageName": "Patient Information - My Netcare Online",
+        "pageId": "patient-information-my-netcare-online"
+      },
+      {
+        "pageName": "Patient Info - Hospital pre-admission - Landing",
+        "pageId": "pre-admission"
+      },
+      {
+        "pageName": "Patient Info - Hospital pre-admission - Taking Medication",
+        "pageId": "pre-admission-taking-medication"
+      },
+      {
+        "pageName": "Patient Info - Hospital admission",
+        "pageId": "hospital-admission"
+      },
+      {
+        "pageName": "All Components",
+        "pageId": "all-components"
+      },
+      {
+        "pageName": "Patient Info - Hospital discharge - Landing",
+        "pageId": "hospitals-discharge"
+      }
+    ]
+  }
+]

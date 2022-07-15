@@ -1,0 +1,82 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<NetcareIconicPages.NetcareIconicPages.Models.Settings>
+
+@using DotNetNuke.Web.Mvc.Helpers
+
+<script type="text/javascript" src="/Portals/_default/Skins/Netcare-Core/js/vue-prod.js"></script>
+<script type="text/javascript" src="/Portals/_default/Skins/Netcare-Core/js/axios.min.js"></script>
+
+<h2 id="dnnSitePanel-BasicSettings" class="dnnFormSectionHead"><a href="" class="dnnSectionExpanded">@Dnn.LocalizeString("BasicSettings")</a></h2>
+<fieldset>
+    <div id="app">
+        <div class="dnnFormItem">
+            <div class="dnnLabel" style="position: relative;">
+                <label class="col-md-2 control-label" for="ProjectId">Project Name</label>
+            </div>
+            <select id="ProjectId" name="ProjectId" v-model="data.projectId" v-on:change="getPages()">
+                <option disabled value="">Select project</option>
+                <option v-for="option of projects" :value="option.projectId">
+                    {{option.projectName}}
+                </option>
+            </select>
+        </div>
+        <div class="dnnFormItem">
+            <div class="dnnLabel" style="position: relative;">
+                <label class="col-md-2 control-label" for="PageId">Page Name</label>
+            </div>
+            <select id="PageId" name="PageId" v-model="data.pageId">
+                <option disabled value="">Select page</option>
+                <option v-for="option of pages" :value="option.pageId">
+                    {{option.pageName}}
+                </option>
+            </select>
+        </div>
+    </div>
+</fieldset>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            'projects': [],
+            'pages': [],
+            'data': {
+                'projectId': '',
+                'pageId': ''
+            },
+            urls: {
+                'pagesJson': '/DesktopModules/MVC/NetcareIconicPages/pages.json'
+            }
+        },
+        methods: {
+            getProjects: function () {
+                axios.get(this.updateUrl(this.urls.pagesJson))
+                    .then(response => {
+                        if (response && response.data) {
+                            this.projects = response.data;
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert('An error occured while reading the question file or the file doesn\'t exist');
+                    });
+            },
+            getPages: function () {
+                this.pages = this.projects.find(e => e.projectId === this.data.projectId).pages.sort((one, two) => (two.pageName > one.pageName ? -1 : 1));;
+            },
+            updateUrl: function (url) {
+                return url + '?t=' + new Date().getTime();
+            },
+            initProps: function () {
+                this.data = {
+                    'projectId': '',
+                    'pageId': ''
+                };
+            }
+        },
+        mounted: function () {
+            this.initProps();
+            this.getProjects();
+        }
+    });
+
+</script>
